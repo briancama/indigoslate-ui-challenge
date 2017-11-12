@@ -1,0 +1,416 @@
+$primary-color: #3F51B5;
+$primary-color-light: #C5CAE9;
+$primary-color-dark: #303F9F;
+$accent-color: #FF5722;
+$text: #FFFFFF;
+$primary-text: #212121;
+$secondary-text: #757575;
+$light-neutral: #BDBDBD;
+$transparent-bg: rgba(21, 21, 21, 0.8);
+$browser-context: 16; // Default
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+@mixin typcon($iconcode) {
+  content: $iconcode;
+  font-family: 'typicons';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
+//function to ensure changes in background colors will still result in readable text
+@function set-text-color($color) {
+  @if (lightness($color) > 50) {
+    @return $primary-text; // light bg, dark color
+  } @else {
+    @return $text; // dark bg, light color
+  }
+}
+
+/*****************************
+  Layout
+*****************************/
+*{
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+}
+//initial keyframe animation won't run
+body.preload *{
+animation-duration: 0s !important;
+-webkit-animation-duration: 0s !important;
+transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+}
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+
+input {
+  color: $primary-text;
+  &::placeholder {
+    color: $light-neutral;
+  }
+}
+
+.container {
+  padding: .5em 1em;
+}
+
+.menu-container {
+  position: relative;
+}
+
+.vertical-menu {
+  li {
+    display: block;
+  }
+}
+
+/*****************************
+  Modules
+*****************************/
+.top-header {
+  @extend .container;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 3px 15px rgba(155, 155, 155 ,0.1);
+}
+
+/*Search Form*/
+.search {
+  position: relative;
+  height:45px;
+  .search-input {
+    border: none;
+    width: 45px;
+    height: 45px;
+    cursor: none;
+    opacity: 0;
+    padding: 0;
+    transition: all .8s ease-in-out;
+    &:focus {
+      width: 125px;
+      outline: none;
+      cursor: text;
+      opacity: 1;
+      // background: radial-gradient(ellipse at top right, transparent 65%, $primary-color 165%);
+      ~ button {
+        &.btn-search {
+          transform: rotate(720deg);
+          right: 135px;
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 45px;
+    width: 45px;
+    border:none;
+    border-radius: 50%;
+    background-color: $accent-color;
+    transition: all .8s ease-in-out;
+    //if device has hover capabilities show hover animation
+    @media (hover: hover) {
+      &:hover {
+        @include animation('wiggle .3s');
+      }
+    }
+    span {
+      color: white;
+      font-size: 1.5em;
+    }
+  }
+}
+
+/*Tab Menu*/
+
+.tab-menu {
+  @extend .container;
+}
+.tab-menu-list {
+  display: flex;
+  justify-content: space-between;
+  .tab-menu-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 45px;
+    color: $secondary-text;
+    transition: color .3s ease-in-out;
+    &.active {
+      color: $accent-color;
+    }
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+      .hamburger-icon span {
+        border-color: $primary-color;
+      }
+    }
+    .typcn {
+      font-size: 1.8em;
+    }
+    .tab-title {
+      font-size: .8em;
+      margin-top: .5em;
+    }
+    .toggle-text-container {
+      max-width: 45px;
+    }
+  }
+}
+
+/*Drawer*/
+.drawer {
+  width:100%;
+  height: 100vh;
+}
+.drawer-item-padding {
+  padding: 1em 0;
+}
+.drawer-menu {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: calc(100% - 77px);
+  height: calc(100vh + 86px);
+  background-color: $primary-color-dark;
+  color: set-text-color($primary-color-dark);
+  opacity:0;
+  transition: opacity .3s ease-in-out;
+  @include animation('slide-out-right .6s');
+  &.slide-open {
+    opacity: 1;
+    @include animation('slide-in-left .6s');
+    left: 0;
+  }
+  .drawer-menu-list-item {
+    position:relative;
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    border-bottom: 1px solid #2f3c94;
+    transition: background-color .3s ease-in-out;
+    &:hover {
+      .gradient-icon {
+        fill: url(#animated-gradient);
+      }
+    }
+    .drawer-item-text {
+      @extend .drawer-item-padding;
+      width: 100%;
+      display:flex;
+      align-items: center;
+      transition: transform .5s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        color: $primary-color-light;
+        transform: scale(1.02);
+      }
+    }
+    &.active {
+      background-color: $primary-color;
+      z-index: 10;
+      .drawer-menu-item-icon {
+        transform: rotate(360deg);
+        color: $accent-color;
+      }
+    }
+    .submenu-open {
+      display: flex;
+      align-items: center;
+      padding: 0 .5em;
+      font-size: 1.2em;
+      cursor: pointer;
+      background-color: $primary-color;
+    }
+  }
+  .drawer-submenu-list {
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    padding-left: 68px;
+    z-index: 10;
+    height: 100vh;
+    background-color: $primary-color;
+    transition: background-color .3s ease-in-out;
+    .drawer-submenu-list-item {
+      padding: 1em .5em;
+      font-size: 14px;
+    }
+  }
+}
+.drawer-menu-item-icon {
+  @extend .drawer-item-padding;
+  padding-left: 1em;
+  padding-right: 1em;;
+  >i {
+    font-size: 2em;
+  }
+  transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+/***************************
+  Helper classes
+***************************/
+.dark-overlay {
+  background-color: rgba(21, 21, 21, 0.8);
+}
+
+//Slide Text Animation Module
+.toggle-text-container {
+  overflow: hidden;
+  text-align: center;
+  .toggle-text {
+    position: relative;
+    width: 200%;
+    left: 0%;
+    transition: left .6s .8s;
+    &.switch {
+      left: -100%;
+    }
+    span {
+      width: 50%;
+      float: left;
+    }
+  }
+}
+
+/*Animated Hamburger Icon*/
+//Wanted to play around with some more pure CSS animations
+.hamburger-icon {
+  $first-delay: 0.7s;
+  $second-delay: $first-delay + .2s;
+  $third-delay: $second-delay + .2s;
+  width: 24px;
+  height: 32px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: .5s $first-delay ease-in-out;
+  cursor: pointer;
+  span {
+    display: block;
+    position: absolute;
+    height: 6px;
+    width: 100%;
+    border-radius: 9px;
+    border: solid 2px $secondary-text;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s $first-delay ease-in-out, color 0s;
+    &:nth-child(1) {
+      bottom: 4px;
+    }
+
+    &:nth-child(2),&:nth-child(3) {
+      bottom: 12px;
+    }
+
+    &:nth-child(4) {
+      bottom: 20px;
+    }
+  }
+  &.open {
+    span:nth-child(1) {
+      bottom: 12px;
+      opacity: 0;
+      transition: bottom .5s $first-delay, opacity 0s $second-delay;
+    }
+    span:nth-child(2) {
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(225deg);
+      transition: transform 0.3s $third-delay ease-in-out;
+    }
+    span:nth-child(3) {
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(135deg);
+      transition: transform 0.3s $third-delay ease-in-out;
+    }
+    span:nth-child(4) {
+      bottom: 12px;
+      opacity: 0;
+      transition: bottom .5s $first-delay, opacity 0s $second-delay;
+    }
+  }
+}
+/*******************************
+  Animations
+*******************************/
+
+@include keyframes(wiggle) {
+  0% {transform: rotate(10deg);}
+  25% {transform: rotate(-10deg);}
+  50% {transform: rotate(20deg);}
+  75% {transform: rotate(-5deg);}
+  100% {transform: rotate(0deg);}
+}
+@include keyframes(slide-in-left) {
+  0% {left: 100%;}
+  100% {left: 0;}
+}
+@include keyframes(slide-out-right) {
+  0% {left: 0;}
+  100% {left: 100%;}
+}

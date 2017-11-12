@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Slate Mobile Drawer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <link rel="stylesheet" href="node_modules/typicons.font/src/font/typicons.css" />
+  <link rel="stylesheet" href="style.css">
+  <script src="node_modules/velocity-animate/velocity.min.js"></script>
+  <script src="node_modules/velocity-animate/velocity.ui.min.js"></script>
+</head>
+<body>
+  <header class="top-header">
+    <a class="top-header-logo">
+      <svg viewBox="0 0 94 45" width="94px" height="45px">
+        <defs>
+          <linearGradient id="animated-gradient" x1="50%" y1="0%" x2="50%" y2="100%">
+
+              <stop offset="5%" stop-color="#FF5722">
+                  <animate attributeName="stop-color" values="#FF5722; #3F51B5; #FF5722" dur="6s" repeatCount="indefinite"></animate>
+              </stop>
+              <stop offset="100%" stop-color="#3F51B5">
+                  <animate attributeName="stop-color" values="#3F51B5; #FF5722; #3F51B5" dur="6s" repeatCount="indefinite"></animate>
+              </stop>
+          </linearGradient>
+        </defs>
+        <g>
+            <path fill="url(#animated-gradient") d="m12.04979,32.02742c-0.26831,-0.88361 -0.29341,-1.83144 -0.29341,-1.83144c0,0 -3.38216,-2.94371 -5.0429,-4.61201c-1.39996,-1.40749 -3.72343,-5.44154 -3.72343,-5.44154c0,0 -0.12353,-1.01952 0.09325,-1.04808c0.35162,-0.04525 2.17451,1.54564 3.95344,2.47443c1.83237,0.95681 3.93502,1.58612 3.93502,1.58612l2.29985,0c0,0 -1.88903,-4.96433 0.53417,-4.31372c0.8755,0.07384 1.35934,1.95186 2.69284,2.15838c1.56249,-0.38396 2.3319,-4.88633 2.3319,-4.88633c0,0 -0.47518,-0.8383 -0.45379,-1.63436c0.01723,-0.52632 0.53519,-1.1271 0.53519,-1.1271c0,0 -1.10478,0.184 -1.8621,-0.05951c-0.68246,-0.21972 -1.72505,-1.07412 -2.00109,-1.70578c-0.34165,-0.7819 -0.25302,-1.64694 -0.61594,-2.14403c-0.036,-0.39009 0.46623,-0.52307 0.73296,-0.33999c1.00409,0.68923 2.33483,0.76255 2.62203,0.90363c1.20169,0.59046 3.22844,0.67281 3.52397,0.55451c-2.6596,-3.31224 0.7146,-3.99991 1.18472,-4.07011c0.58834,0.63957 1.47488,1.40848 1.72903,2.10712c0.33686,0.42517 0.30945,-0.17921 0.30945,-0.17921c0,0 0.01723,-1.78262 0.78521,-3.11749c0.17703,-0.3114 1.15563,-1.30564 1.80804,-1.39264c0.23651,-0.03153 0.73805,-0.10258 1.2717,-0.58165c1.36344,-1.22407 5.08373,-1.01934 5.08373,-1.01934c0,0 0.30114,0.13931 0.86423,0.13693c0.49715,-0.00293 9.24538,-0.51909 12.82311,0.76749c2.40484,0.86478 6.70606,0.60615 11.88705,-0.87344c1.63529,-0.46698 6.35839,-0.58825 6.35839,-0.58825c0,0 1.78631,0.09906 3.23617,0.58915c2.26038,0.76406 6.56486,0.46826 9.20267,0.7481c1.01804,0.10836 2.96719,1.06235 4.58005,1.95288c5.07086,2.7997 8.02599,9.06928 7.66871,11.20465c-0.69632,4.16174 -4.8437,11.29105 -6.6759,14.42585c-0.74125,1.26824 -1.12294,3.19394 -0.96073,4.65825c0.04725,0.42645 -0.56114,1.49304 -1.71479,2.22016c-1.62584,1.02478 -0.40032,2.52747 -0.25003,3.21812c0.14966,0.68885 0.09976,1.57243 -0.34156,1.76893c-0.43949,0.19525 -6.72114,1.29477 -6.90541,-0.1709c-0.91996,-1.65473 3.5974,-4.1681 3.08087,-7.08935c-1.47816,-1.94361 -1.82147,-6.27351 -2.0581,-6.93807c-0.2475,-2.99038 -5.09018,1.69434 -7.53207,2.65306c-7.01813,2.75544 -14.93785,1.51332 -15.56071,1.2819c-0.85469,2.59733 0.04754,3.88134 0.10575,4.19751c-0.19211,1.7712 1.69916,4.61027 2.12162,6.3504c0.34586,1.39465 -5.56435,1.39465 -7.18519,1.33906c-1.33426,-0.35842 0.67156,-2.96958 0.99845,-3.26095c0.44507,-2.24327 -2.03721,-4.25426 -2.03721,-4.25426c0,0 -0.17729,2.011 -0.67069,3.69937c0.02057,0.79582 0.81195,1.37416 0.9272,2.08385c0.12237,0.75793 -0.45379,0.85676 -0.45379,0.85676c0,0 -4.53088,0.81256 -5.67236,-0.13158c-0.5725,-0.17967 -1.07154,0.11313 -1.47247,-0.19827c-0.27856,-0.21792 0.18116,-1.46462 0.52627,-1.80938c0.29519,-0.29646 2.26497,-0.36045 2.28023,-2.74652c-0.48808,-4.23842 -4.50702,-6.01282 -4.80636,-7.66153c-1.94654,0.7615 -3.99322,-0.66976 -3.99322,-0.66976c0,0 -0.53516,0.61978 -1.12439,0.73703c-0.4728,0.0929 -2.20723,-1.02103 -2.78807,-1.67004c-0.18746,2.54171 -2.28258,1.86358 -2.28258,1.86358c0,0 -0.74069,1.2488 -1.91795,1.85224c-2.9019,1.48752 -3.43383,1.36922 -4.63171,2.50425c-0.67464,0.63922 -1.86035,-0.30524 -2.64376,-0.01125c-2.83689,1.06465 -4.55084,-0.29574 -4.41554,-3.31582z"/>
+        </g>
+    </svg>
+    </a>
+    <form class="search" id="header-search">
+      <input class="search-input" type="text" placeholder="search" aria-label="Search">
+      <button type="submit" class="btn-search"><span class="typcn typcn-zoom"></span></button>
+    </form>
+  </header>
+  <div class="menu-container">
+    <div class="tab-container">
+      <nav class="tab-menu">
+        <ul class="tab-menu-list">
+          <li class="tab-menu-list-item active">
+            <span class="typcn typcn-home-outline"></span>
+            <span class="tab-title">Home</span>
+          </li>
+          <li class="tab-menu-list-item">
+            <span class="typcn typcn-news"></span>
+            <span class="tab-title">News</span></li>
+          <li class="tab-menu-list-item">
+            <span class="typcn typcn-chart-bar-outline"></span>
+            <span class="tab-title">Ratings</span>
+          </li>
+          <li class="tab-menu-list-item">
+            <span class="typcn typcn-camera-outline"></span>
+            <span class="tab-title">Photos</span>
+          </li>
+          <li id="drawer-open" class="tab-menu-list-item .tab-toggle-menu">
+            <div class="hamburger-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="toggle-text-container">
+              <div class="toggle-text">
+                <span class="tab-title">More</span>
+                <span class="tab-title">Close</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="drawer">
+      <nav id="main-drawer" class="drawer-menu vertical-menu">
+        <ul class="drawer-menu-list">
+          <li class="drawer-menu-list-item has-submenu">
+            <div class="drawer-menu-item-icon">
+              <i class="typcn typcn-calendar-outline"></i>
+            </div>
+            <span class="drawer-item-text">My Schedule</span>
+            <div class="submenu-open">
+              <i class="typcn typcn-media-play"></i>
+            </div>
+            <ul class="drawer-submenu-list">
+              <li class="drawer-submenu-list-item">Daily View</li>
+              <li class="drawer-submenu-list-item">Weekly View</li>
+              <li class="drawer-submenu-list-item">Monthly View</li>
+              <li class="drawer-submenu-list-item">Sync With Calendar</li>
+            </ul>
+          </li>
+          <li class="drawer-menu-list-item">
+            <div class="drawer-menu-item-icon">
+              <i class="typcn typcn-clipboard"></i>
+            </div>
+            <span class="drawer-item-text">Administration</span>
+          </li>
+          <li class="drawer-menu-list-item has-submenu">
+            <div class="drawer-menu-item-icon">
+              <i class="typcn typcn-chart-pie-outline"></i>
+            </div>
+            <span class="drawer-item-text">Data and Processes</span>
+            <div class="submenu-open">
+              <i class="typcn typcn-media-play"></i>
+            </div>
+            <ul class="drawer-submenu-list">
+              <li class="drawer-submenu-list-item">Daily Statistics</li>
+              <li class="drawer-submenu-list-item">Weekly Statistics</li>
+              <li class="drawer-submenu-list-item">Monthly Statistics</li>
+              <li class="drawer-submenu-list-item">Overview</li>
+            </ul>
+          </li>
+          <li class="drawer-menu-list-item has-submenu">
+            <div class="drawer-menu-item-icon">
+              <i class="typcn typcn-starburst-outline"></i>
+            </div>
+            <span class="drawer-item-text">Awards and Recognition</span>
+            <div class="submenu-open">
+              <i class="typcn typcn-media-play"></i>
+            </div>
+            <ul class="drawer-submenu-list">
+              <li class="drawer-submenu-list-item">Help</li>
+              <li class="drawer-submenu-list-item">Advanced Settings</li>
+            </ul>
+          </li>
+          <li class="drawer-menu-list-item" >
+            <div class="drawer-menu-item-icon">
+              <i class="typcn typcn-cog-outline"></i>
+            </div>
+            <span class="drawer-item-text">Help</span>
+          </li>
+        </ul>
+    </div>
+  </div>
+<script src="index.js"></script>
+</body>
+</html>
