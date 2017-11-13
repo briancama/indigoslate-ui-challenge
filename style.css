@@ -177,6 +177,7 @@ input {
       cursor: pointer;
       background-color: #3F51B5; }
   .drawer-menu .drawer-submenu-list {
+    opacity: 0;
     position: absolute;
     top: 100%;
     left: -100%;

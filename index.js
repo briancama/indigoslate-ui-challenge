@@ -42,7 +42,7 @@
         console.log(viewportOffset);
         var top = viewportOffset.top + window.scrollY - 65;
         var mySequence = [
-          { e: menuItem.getElementsByClassName('drawer-submenu-list'), p: { left: 0}, o: { duration: 500, easing: 'ease-in-out' } },
+          { e: menuItem.getElementsByClassName('drawer-submenu-list'), p: { left: 0, opacity: 1 }, o: { duration: 500, easing: 'ease-in-out' } },
           { e: menuItem, p: { top: -top }, o: { duration: 500, easing: 'ease-in-out' } },
         ];
         Velocity.RunSequence(mySequence);
@@ -50,7 +50,7 @@
     else {
       var mySequence = [
         { e: menuItem, p: { top: 0 }, o: { duration: 400 } },
-        { e: menuItem.getElementsByClassName('drawer-submenu-list'), p: { left: '-100%'}, o: { duration: 400 }},
+        { e: menuItem.getElementsByClassName('drawer-submenu-list'), p: { left: '-100%', opacity: 0 }, o: { duration: 400 }},
       ];
       Velocity.RunSequence(mySequence);
       setTimeout(function(self){
