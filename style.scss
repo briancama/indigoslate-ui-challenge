@@ -131,11 +131,11 @@ input {
 /*Search Form*/
 .search {
   position: relative;
-  height:45px;
+  height:30px;
   .search-input {
     border: none;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     cursor: none;
     opacity: 0;
     padding: 0;
@@ -159,8 +159,8 @@ input {
     position: absolute;
     top: 0;
     right: 0;
-    height: 45px;
-    width: 45px;
+    height: 30px;
+    width: 30px;
     border:none;
     border-radius: 50%;
     background-color: $accent-color;
@@ -173,7 +173,6 @@ input {
     }
     span {
       color: white;
-      font-size: 1.5em;
     }
   }
 }
@@ -271,6 +270,9 @@ input {
         transform: rotate(360deg);
         color: $accent-color;
       }
+      .submenu-open .typcn {
+        transform: rotate3d(2, 2, 0, 180deg);
+      }
     }
     .submenu-open {
       display: flex;
@@ -279,6 +281,9 @@ input {
       font-size: 1.2em;
       cursor: pointer;
       background-color: $primary-color;
+      .typcn {
+        transition: transform 0.5s ease-in-out;
+      }
     }
   }
   .drawer-submenu-list {
@@ -365,6 +370,10 @@ input {
       bottom: 12px;
     }
 
+    &:nth-child(3) {
+      opacity: 0;
+    }
+
     &:nth-child(4) {
       bottom: 20px;
     }
@@ -383,11 +392,12 @@ input {
       transition: transform 0.3s $third-delay ease-in-out;
     }
     span:nth-child(3) {
+      opacity: 1;
       -webkit-transform: rotate(-45deg);
       -moz-transform: rotate(-45deg);
       -o-transform: rotate(-45deg);
       transform: rotate(135deg);
-      transition: transform 0.3s $third-delay ease-in-out;
+      transition: transform 0.3s $third-delay ease-in-out, opacity 0s $third-delay;;
     }
     span:nth-child(4) {
       bottom: 12px;
